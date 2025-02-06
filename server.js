@@ -19,7 +19,12 @@ let server = express();
 //parser config
 server.use(express.urlencoded({ extended:true }));
 server.use(express.json());
-server.use(helmet());
+server.use(helmet({
+    crossOriginEmbedderPolicy: false,
+    // ...
+  })
+);
+
 
 
 //configure routes

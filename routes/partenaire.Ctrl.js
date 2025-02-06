@@ -4,6 +4,7 @@ const {invalid} = require('joi');
 const fs = require('fs');
 const createPartenaireSchema =  require("../utils/joi/createPartenaire");
 const modifyPartenaireSchema =  require("../utils/joi/modifyPartenaire");
+const { where } = require('sequelize');
 module.exports = {
 
     createPartenaire : async function(req, res){
@@ -74,7 +75,9 @@ module.exports = {
             return res.status(400).json({'error': `vous n'êtes pas identifié`});
         }
         models.Partenaire.findOne({
-            id : req.params.id
+            where:{
+              id : req.params.id  
+            }
         })
         .then(function(partenaire){
             if(partenaire){
@@ -156,7 +159,10 @@ module.exports = {
             return res.status(400).json({'error': `vous n'êtes pas identifié`});
         }
         models.Partenaire.findOne({
-            id : req.params.id
+            where:{
+                id : req.params.id
+            }
+            
         })
         .then(function(partenaire){
             const filename = partenaire.picture.split('/images/')[1];
