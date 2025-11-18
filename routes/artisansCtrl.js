@@ -37,7 +37,7 @@ module.exports = {
                             price: req.body.price,
                             taille : req.body.taille,
                             activate: true,
-                            picture: `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}`
+                            picture: `//${req.get("host")}/images/${req.files[0].filename}`
                         })
                     } else {
                         return res.status(409).json({'error': `ce artisans existe déjà`});
@@ -75,7 +75,9 @@ module.exports = {
             return res.status(400).json({'error': `vous n'êtes pas identifié`});
         }
         models.Artisan.findOne({
-            id : req.params.id
+            where:{
+                id : req.params.id
+            }
         })
         .then(function(artisans){
             if(artisans){
@@ -130,7 +132,7 @@ module.exports = {
                     price: req.body.price ? req.body.price : price,
                     taille: req.body.taille ? req.body.taille : taille,
                     activate: req.body.activate ? req.body.activate : activate,
-                    picture: `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}` ? `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}` : picture
+                    picture: `//${req.get("host")}/images/${req.files[0].filename}` ? `//${req.get("host")}/images/${req.files[0].filename}` : picture
                 })
                 .then(function(artisans){
                     return res.status(201).json(artisans)

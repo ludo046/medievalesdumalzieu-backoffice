@@ -37,7 +37,7 @@ module.exports = {
                             site: req.body.site,
                             activate: true,
                             texte: req.body.texte,
-                            picture: `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}`
+                            picture: `//${req.get("host")}/images/${req.files[0].filename}`
                         })
                     } else {
                         return res.status(409).json({'error': `ce partenaire existe déjà`});
@@ -131,7 +131,7 @@ module.exports = {
                     site: req.body.site ? req.body.site : site,
                     activate: req.body.activate ? req.body.activate : activate,
                     texte: req.body.texte ? req.body.texte : texte,
-                    picture: `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}` ? `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}` : picture
+                    picture: `//${req.get("host")}/images/${req.files[0].filename}` ? `//${req.get("host")}/images/${req.files[0].filename}` : picture
                 })
                 .then(function(partenaire){
                     return res.status(201).json(partenaire)

@@ -36,7 +36,7 @@ module.exports = {
                             description: req.body.description,
                             price: req.body.price,
                             activate: true,
-                            picture: `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}`
+                            picture: `//${req.get("host")}/images/${req.files[0].filename}`
                         })
                     } else {
                          return res.status(409).json(troupeFound);
@@ -131,7 +131,7 @@ module.exports = {
                     description: req.body.description ? req.body.description : description,
                     price: req.body.price ? req.body.price : price,
                     activate: req.body.activate ? req.body.activate : activate,
-                    picture: `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}` ? `${req.protocol}://${req.get("host")}/images/${req.files[0].filename}` : picture
+                    picture: `//${req.get("host")}/images/${req.files[0].filename}` ? `//${req.get("host")}/images/${req.files[0].filename}` : picture
                 })
                 .then(function(troupe){
                     return res.status(201).json(troupe)
